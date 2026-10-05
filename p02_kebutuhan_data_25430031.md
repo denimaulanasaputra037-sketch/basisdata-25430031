@@ -13,9 +13,39 @@ Perpustakaan digunakan untuk mengelola data anggota, buku, peminjaman, pengembal
 | PB-03 | Peminjaman Buku       | Anggota, Petugas             |
 | PB-04 | Pengembalian Buku     | Anggota, Petugas             |
 | PB-05 | Pembuatan Laporan     | Petugas, Kepala Perpustakaan |
+| PB-06 | Pengelolaan Data Petugas | Admin |
+
 ## 3. Dokumen Sumber yang Dianalisis
 
-Dokumen sumber yang digunakan adalah formulir pendaftaran anggota perpustakaan. Formulir ini digunakan untuk mencatat data anggota seperti nomor anggota, NIM, nama, nomor HP, dan status anggota.
+Dokumen sumber yang digunakan adalah formulir pendaftaran anggota perpustakaan. Formulir ini dibuat sebagai contoh untuk melihat data apa saja yang perlu disimpan dalam sistem.
+
+### Contoh Formulir Pendaftaran Anggota
+
+**FORMULIR PENDAFTARAN ANGGOTA PERPUSTAKAAN**
+
+- No. Anggota : AG001
+- NIM : 25430031
+- Nama : Deni Maulana
+- No. HP : 08123456789
+- Status Anggota : Aktif
+- Tanggal Daftar : 05-10-2026
+- Petugas : Andi
+
+### Pembedahan Dokumen Sumber
+
+Dari formulir tersebut, data yang dibutuhkan adalah:
+
+| No | Data | Keterangan |
+|---|---|---|
+| 1 | No. Anggota | Identitas anggota |
+| 2 | NIM | Nomor identitas mahasiswa |
+| 3 | Nama | Nama anggota |
+| 4 | No. HP | Nomor telepon anggota |
+| 5 | Status Anggota | Menunjukkan status anggota |
+| 6 | Tanggal Daftar | Tanggal anggota terdaftar |
+| 7 | Petugas | Petugas yang mencatat pendaftaran |
+
+Data dari formulir tersebut digunakan sebagai dasar untuk menentukan entitas dan elemen data pada sistem perpustakaan.
 
 ## 4. Entitas Kandidat dan Elemen Data
 
@@ -62,6 +92,7 @@ Keterangan: C = Create, R = Read, U = Update, D = Delete.
 | PB-03 Peminjaman Buku       | R       | R       | R/U   | C          | C                 | -            | -     |
 | PB-04 Pengembalian Buku     | R       | R       | U     | R/U        | U                 | C            | C     |
 | PB-05 Pembuatan Laporan     | R       | R       | R     | R          | R                 | R            | R     |
+| PB-06 Pengelolaan Data Petugas | - | C/U/D | - | - | - | - | - |
 ## 8. Kamus Data
 
 | No | Elemen Data        | Keterangan                 | Contoh      | Penanggung Jawab |
@@ -109,7 +140,43 @@ Keterangan: C = Create, R = Read, U = Update, D = Delete.
 | 17 | `tgl_pengembalian` | Tanggal pengembalian       | 13-10-2026  | Petugas          |
 | 18 | `hari_terlambat`   | Jumlah hari keterlambatan  | 1           | Petugas          |
 | 19 | `id_denda`         | ID denda                   | DN001       | Petugas          |
-| 20 | `jumlah_denda`     | Besarnya denda             | 5000        | Petugas          |
+| 20 | `jumlah_denda`     | Besarnya denda             | 5000        | Petugas  
+## 9. Kebutuhan Non-Fungsional Data
+
+| Kode | Kebutuhan |
+|---|---|
+| NFR-01 | Data anggota hanya boleh diakses oleh petugas dan admin. |
+| NFR-02 | Data transaksi peminjaman dan pengembalian harus disimpan sebagai riwayat. |
+| NFR-03 | Data transaksi harus dicatat dengan benar dan tidak boleh terjadi pencatatan transaksi yang sama secara tidak sengaja. |
+| NFR-04 | Data transaksi perpustakaan disimpan minimal selama 5 tahun. |
+| NFR-05 | Sistem diperkirakan menangani sekitar 65 transaksi per hari. |
+
+### Data Pribadi dan Hak Akses
+
+| Data Pribadi | Yang Boleh Mengakses |
+|---|---|
+| Nama anggota | Petugas dan Admin |
+| NIM anggota | Petugas dan Admin |
+| Nomor HP anggota | Petugas dan Admin |
+| Riwayat peminjaman | Petugas dan Kepala Perpustakaan |
+
+### Parameter P
+
+NIM = 25430031
+
+2 digit terakhir NIM = 31
+
+P = (31 mod 9) + 1
+
+P = 4 + 1
+
+**P = 5**
+
+Berdasarkan nilai P = 5:
+
+- Batas maksimal item per transaksi = P + 2 = **7 item**
+- Persentase denda harian = **5**
+- Perkiraan volume transaksi harian = 40 + (5 × P) = **65 transaksi**        |
 ## 10. Isu Kualitas Data
 
 Beberapa masalah data yang mungkin terjadi adalah:
