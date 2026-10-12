@@ -57,7 +57,7 @@ Data dari formulir tersebut digunakan sebagai dasar untuk menentukan entitas dan
 | Petugas           |   id_petugas, nama_petugas                 |   Data kepegawaian     |
 | Buku              |     kode_buku, judul_buku, pengarang, tahun_terbit, stok_buku              |  Daftar buku       |
 | Peminjaman        |    no_peminjaman, tgl_peminjaman, tgl_jatuh_tempo, jumlah_buku (turunan)               |    Slip peminjaman    |
-| Detail Peminjaman |        no_peminjaman, kode_buku            |       Slip peminjaman   |
+| Detail Peminjaman |        no_peminjaman, kode_buku, kondisi_keluar            |       Slip peminjaman   |
 | Pengembalian      |             no_pengembalian, tgl_pengembalian       |Slip pengembalian        |
 | Denda             |            id_denda, hari_terlambat (turunan), tarif_denda_harian, jumlah_denda (turunan), status_bayar        |   Slip pengembalian      |
 
@@ -77,8 +77,9 @@ Data dari formulir tersebut digunakan sebagai dasar untuk menentukan entitas dan
 | AB-09 | Setiap transaksi peminjaman dan pengembalian dicatat oleh petugas. |
 | AB-10 | Setiap buku harus memiliki kode buku yang jelas. |
 | AB-11 | Satu transaksi peminjaman maksimal 7 buku. |
-| AB-12 | Lama peminjaman maksimal 7 hari. | 
-                     |
+| AB-12 | Lama peminjaman maksimal 7 hari. |
+| AB-13 | Petugas mencatat kondisi setiap buku saat dipinjam (Baik atau Rusak ringan). |
+
 ## 6. Kebutuhan Informasi
 
 | Kode | Kebutuhan Informasi | Data yang diperlukan |
@@ -133,6 +134,7 @@ Keterangan: C = Create, R = Read, U = Update, D = Delete.
 | 22 | tarif_denda_harian | Tarif denda per hari | 5000 | Rp5.000 per hari | Petugas |
 | 23 | jumlah_denda (turunan) | Besarnya denda | 5000 | Hari terlambat dikali tarif harian | Petugas |
 | 24 | status_bayar | Status pembayaran denda | Belum Lunas | Lunas atau Belum Lunas | Petugas |
+| 25 | kondisi_keluar | Kondisi buku saat dipinjam | Baik | Baik atau Rusak ringan; dicatat per buku pada setiap transaksi (AB-13) | Petugas |
 
 ## 9. Kebutuhan Non-Fungsional Data
 
