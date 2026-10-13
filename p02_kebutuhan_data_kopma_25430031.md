@@ -52,13 +52,14 @@ Pembedahan isian nota:
 
 | Entitas Kandidat | Elemen Data Utama | Sumber |
 | --- | --- | --- |
-| Anggota | nomor anggota, NIM, nama, program studi, nomor HP, status aktif | Formulir pendaftaran |
-| Barang | kode, nama, kategori, harga jual, stok, batas minimum stok | Daftar barang, faktur |
-| Penjualan | nomor nota, tanggal-jam, kasir, anggota (opsional), bayar | Nota penjualan |
-| Detail penjualan | nomor nota, barang, qty, harga saat transaksi | Nota penjualan |
-| Petugas | kode petugas, nama, peran (kasir/gudang/ketua) | Wawancara |
-| Pemasok | kode, nama, telepon, alamat | Faktur pemasok |
-| Pembelian dan detailnya | nomor faktur, tanggal, pemasok, barang, qty, harga beli | Faktur pemasok |
+| Anggota |	id_anggota (PK), no_anggota (AK), nim_anggota (AK), nama_anggota, prodi_anggota, no_hp_anggota, status_aktif_anggota | Formulir pendaftaran |
+| Barang | 	id_barang (PK), kode_barang (AK), nama_barang, kategori_barang, harga_jual_barang, stok_barang, batas_min_stok_barang | Daftar barang, faktur |
+| Penjualan | id_penjualan (PK), no_nota_penjualan (AK), waktu_penjualan, bayar_penjualan, id_petugas (FK), id_anggota (FK, boleh kosong), jumlah_penjualan (turunan), diskon_penjualan (turunan), total_penjualan (turunan), kembali_penjualan (turunan) | Nota penjualan |
+| Detail penjualan |id_penjualan (PK, FK), id_barang (PK, FK), qty_detail_penjualan, harga_satuan_detail_penjualan, subtotal_detail_penjualan (turunan) | Nota penjualan |
+| Petugas |id_petugas (PK), kode_petugas (AK), nama_petugas, peran_petugas| Wawancara |
+| Pemasok | id_pemasok (PK), kode_pemasok (AK), nama_pemasok , telepon_pemasok, alamat_pemasok| Faktur pemasok |
+| Pembelian |	id_pembelian (PK), no_faktur_pembelian (AK), tgl_pembelian, id_pemasok (FK) | faktur pembelian
+ detailnya_pembelian |id_pembelian (PK, FK), id_barang (PK, FK), qty_detail_pembelian, harga_beli_detail_pembelian | Rincian barang pada faktur pembelian |
 
 ## 5. Aturan Bisnis
 
@@ -85,7 +86,7 @@ Pembedahan isian nota:
 | Proses | Anggota | Barang | Penjualan | Detail | Pemasok | Pembelian |
 | --- | --- | --- | --- | --- | --- | --- |
 | PB-01 Daftar anggota | C | | | | | |
-| PB-02 Catat penjualan | R | R, U | C | C | | |
+| PB-02 Catat penjualan | R | R, U | C | C [Tempel tangkapan layar: tabel entitas kandidat sebelum dan sesudah penandaan kunci dan atribut turunan. Pastikan akun ber-NIM dan jam sistem terlihat] | |
 | PB-03 Pesan ke pemasok | | R | | | R | C |
 | PB-04 Terima barang | | U | | | R | U |
 | PB-05 Laporan bulanan | R | R | R | R | | R |
