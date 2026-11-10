@@ -35,11 +35,12 @@ INSERT INTO barang (kode_barang, nama_barang, kategori_barang,
   ('MKN-002', 'Wafer Cokelat',   'makanan', 3500,  30, 12);
 
 -- Anggota: 3 aktif + 2 nonaktif yang mendaftar sebelum 2025 (bahan Latihan E.1)
+-- A-0459 sengaja tanpa nomor HP (NULL) sebagai bahan kueri IS NULL di Modul 7
 INSERT INTO anggota (no_anggota, nim_anggota, nama_anggota, prodi_anggota,
                      no_hp_anggota, status_anggota, tgl_daftar_anggota) VALUES
   ('A-0457', '2543004571', 'Budi Santoso',    'Teknik Informatika', '081234560457', 'aktif',    '2026-08-17'),
   ('A-0458', '2543004581', 'Citra Lestari',   'Sistem Informasi',   '081234560458', 'aktif',    '2026-08-18'),
-  ('A-0459', '2543004591', 'Eko Prasetyo',    'Manajemen',          '081234560459', 'aktif',    '2026-08-20'),
+  ('A-0459', '2543004591', 'Eko Prasetyo',    'Manajemen',          NULL,           'aktif',    '2026-08-20'),
   ('A-0312', '2443003121', 'Fitri Handayani', 'Akuntansi',          '081234560312', 'nonaktif', '2024-09-05'),
   ('A-0313', '2443003131', 'Gunawan Wibowo',  'Teknik Informatika', '081234560313', 'nonaktif', '2024-09-06');
 
